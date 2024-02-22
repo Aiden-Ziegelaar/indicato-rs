@@ -1,0 +1,24 @@
+[package]
+name = "indicato-rs"
+version = "0.0.0"
+authors = ["Aiden Ziegelaar"]
+description = "Library for mathmatical interpretation and signals"
+documentation = "https://aiden.ziegelaar.io"
+edition = "2021"
+
+[dependencies]
+# Workspace Dependencies
+
+# Local Dependencies
+local_macros = { path = "./local_macros" }
+
+# External Dependencies
+
+[dev-dependencies]
+criterion = { version = "0.4", features = ["html_reports"] }
+
+[[bench]]
+name = "wilders_smoothing_bench"
+harness = false
+
+[lib]
