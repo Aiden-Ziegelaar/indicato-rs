@@ -207,12 +207,10 @@ fn up_down(input: f64, previous: f64) -> (f64, f64) {
 
 #[derive(Apply, Evaluate)]
 pub struct RelativeStrengthIndex {
-    /// The period of the RSI, used for the Wilders Smoothing aggregations.
-    pub period: usize,
     /// Even though the RSI is available from the first value after the period parameter, additional values 
     /// can be used to seed the RSI. This is added to the period to prevent values from being produced until
     /// `period` + `seed_period` values have been applied.
-    pub seed_period: usize,
+    seed_period: usize,
     /// The Wilders Smoothing aggregation for the upward price change.
     up_ws: super::WildersSmoothing,
     // The Wilders Smoothing aggregation for the downward price change.
@@ -244,7 +242,6 @@ impl RelativeStrengthIndex {
                 "Period must be greater than 0",
             )),
             _ => Ok(Self {
-                period,
                 seed_period: period + seed_period,
                 up_ws: super::WildersSmoothing::new(period)?,
                 down_ws: super::WildersSmoothing::new(period)?,

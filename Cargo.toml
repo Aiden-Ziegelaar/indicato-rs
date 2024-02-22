@@ -16,6 +16,7 @@ local_macros = { path = "./local_macros" }
 
 [dev-dependencies]
 criterion = { version = "0.4", features = ["html_reports"] }
+approx = { version = "0.5.1" }
 
 [[bench]]
 name = "wilders_smoothing_bench"

@@ -9,3 +9,6 @@ pub use exponential_moving_average::ExponentialMovingAverage;
 
 mod wilders_smoothing;
 pub use wilders_smoothing::WildersSmoothing;
+
+mod moving_average_convergence_divergence;
+pub use moving_average_convergence_divergence::MovingAverageConvergenceDivergence;

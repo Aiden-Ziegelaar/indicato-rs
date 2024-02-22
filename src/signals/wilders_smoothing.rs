@@ -105,7 +105,7 @@ fn calculate_wilders(input: f64, previous: f64, period: usize) -> f64 {
 #[derive(Apply, Evaluate)]
 pub struct WildersSmoothing {
     /// The period of the Wilders Smoothing aggregation
-    pub period: usize,
+    period: usize,
     current: f64,
     previous: f64,
     seed_count: usize,

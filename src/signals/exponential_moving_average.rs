@@ -77,8 +77,6 @@ fn calculate_emas(input: f64, k: f64, current: f64, is_new: bool) -> f64 {
 /// 
 #[derive(Apply, Evaluate)]
 pub struct ExponentialMovingAverage {
-    /// Period of the Exponential Moving Average
-    pub period: usize,
     current: f64,
     k: f64,
     is_new: bool,
@@ -113,7 +111,6 @@ impl ExponentialMovingAverage {
                 "Period must be greater than 0",
             )),
             _ => Ok(Self {
-                period,
                 k: 2.0 / (period + 1) as f64,
                 current: 0.0,
                 is_new: true,

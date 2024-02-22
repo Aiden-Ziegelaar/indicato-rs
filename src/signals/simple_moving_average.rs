@@ -102,7 +102,7 @@ fn calculate_sma(input: f64, period: usize, values: &mut VecDeque<f64>) -> f64 {
 /// 
 #[derive(Apply, Evaluate)]
 pub struct SimpleMovingAverage {
-    pub period: usize,
+    period: usize,
     values: VecDeque<f64>,
 }
 
