@@ -29,6 +29,7 @@ pub trait Apply: Executable {
 
 /// Returns the current value of the aggregation.
 pub trait Current: IoState {
+    /// Returns the current value of the aggregation.
     fn current(&self) -> Self::Output;
 }
 

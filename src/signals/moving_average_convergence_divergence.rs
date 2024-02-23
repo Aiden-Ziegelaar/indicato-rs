@@ -52,6 +52,8 @@ use super::ExponentialMovingAverage;
 /// <br>
 /// Where `o` is the output, `n` is the current step, `EMA` is the Exponential Moving Average, `S` is the short period, `L` is the long period and `i` is the input.
 ///
+/// _NB._ This will not produce a signal line, you will need to produce your own signal line from the MACD output.
+/// 
 /// # Example Usage
 /// ```
 /// use indicato_rs::signals::MovingAverageConvergenceDivergence;

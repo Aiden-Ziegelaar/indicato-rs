@@ -12,3 +12,9 @@ pub use wilders_smoothing::WildersSmoothing;
 
 mod moving_average_convergence_divergence;
 pub use moving_average_convergence_divergence::MovingAverageConvergenceDivergence;
+
+mod maximum_period;
+pub use maximum_period::MaximumPeriod;
+
+mod minimum_period;
+pub use minimum_period::MinimumPeriod;
