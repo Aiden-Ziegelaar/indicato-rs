@@ -10,7 +10,7 @@ use crate::{
 /// # Minimum Period
 ///
 /// The minimum period signal is a signal that calculates the minimum value of a given period.
-/// 
+///
 /// The aggregation will begin producing values immediately, the first value will be the input, after which the following formula is applied:
 /// <br>
 /// <br>
@@ -50,7 +50,7 @@ use crate::{
 ///         <mi>k</mi>
 ///         <mo>∈</mo>
 ///         <mo>{</mo>
-///             <mrow><mn>H(n-p)</mn><mo>⋅</mo><mo>(</mo><mn>n-p</mn><mo>)</mo></mrow> 
+///             <mrow><mn>H(n-p)</mn><mo>⋅</mo><mo>(</mo><mn>n-p</mn><mo>)</mo></mrow>
 ///             <mo>..</mo>
 ///             <mn>n</mn>
 ///         <mo>}</mo>
@@ -85,12 +85,12 @@ use crate::{
 /// ```
 #[derive(Apply, Evaluate)]
 pub struct MinimumPeriod {
-    period: u32,
+    period: usize,
     values: VecDeque<f64>,
 }
 
 impl MinimumPeriod {
-    pub fn new(period: u32) -> Result<Self, FinError> {
+    pub fn new(period: usize) -> Result<Self, FinError> {
         match period {
             0 => Err(FinError::new(
                 FinErrorType::InvalidInput,
@@ -98,7 +98,7 @@ impl MinimumPeriod {
             )),
             _ => Ok(Self {
                 period,
-                values: VecDeque::with_capacity(period as usize),
+                values: VecDeque::with_capacity(period),
             }),
         }
     }
@@ -110,20 +110,25 @@ impl IoState for MinimumPeriod {
 }
 
 impl Executable for MinimumPeriod {
-    fn execute(&mut self, input: Self::Input, execution_context: &ExecutionContext)
-            -> Self::Output {
+    fn execute(
+        &mut self,
+        input: Self::Input,
+        execution_context: &ExecutionContext,
+    ) -> Self::Output {
         match execution_context {
             ExecutionContext::Apply => {
                 self.values.push_back(input);
-                if self.values.len() > self.period as usize {
+                if self.values.len() > self.period {
                     self.values.pop_front();
                 }
                 self.values.iter().fold(f64::MAX, |acc, &x| acc.min(x))
             }
-            ExecutionContext::Evaluate => {
-                self.values.iter().skip(1).fold(f64::MAX, |acc, &x| acc.min(x))
-                    .min(input)
-            }
+            ExecutionContext::Evaluate => self
+                .values
+                .iter()
+                .skip(1)
+                .fold(f64::MAX, |acc, &x| acc.min(x))
+                .min(input),
         }
     }
 }

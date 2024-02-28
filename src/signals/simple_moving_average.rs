@@ -77,29 +77,29 @@ fn calculate_sma(input: f64, period: usize, values: &mut VecDeque<f64>) -> f64 {
 /// </math>
 /// <br><br>
 /// Where `o` is the output, `n` is the current step, `n-1` is the previous step, `p` is the period of the simple moving average and `i` is the input.
-/// 
+///
 /// # Example Usage
 /// ```
 /// use indicato_rs::signals::SimpleMovingAverage;
 /// use indicato_rs::traits::{Apply, Evaluate, Current};
-/// 
+///
 /// // create a new Simple Moving Average with a period of 3
 /// let mut sma = SimpleMovingAverage::new(3).unwrap();
-/// 
+///
 /// // apply some values and check their output
 /// assert_eq!(sma.apply(1.0), 1.0);
 /// assert_eq!(sma.apply(2.0), 1.5);
 /// assert_eq!(sma.apply(3.0), 2.0);
 /// assert_eq!(sma.apply(4.0), 3.0);
-/// 
+///
 /// // evaluate some values, these won't affect the internal state of the SMA
 /// assert_eq!(sma.evaluate(5.0), 4.0);
 /// assert_eq!(sma.evaluate(8.0), 5.0);
-/// 
+///
 /// // fetch the current value of the EMA
 /// assert_eq!(sma.current(), 3.0);
 /// ````
-/// 
+///
 #[derive(Apply, Evaluate)]
 pub struct SimpleMovingAverage {
     period: usize,

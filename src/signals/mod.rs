@@ -18,3 +18,6 @@ pub use maximum_period::MaximumPeriod;
 
 mod minimum_period;
 pub use minimum_period::MinimumPeriod;
+
+mod stochastic_momentum_oscillator;
+pub use stochastic_momentum_oscillator::StochasticMomentumOscillator;

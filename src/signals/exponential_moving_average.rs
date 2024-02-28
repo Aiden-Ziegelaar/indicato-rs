@@ -52,29 +52,29 @@ fn calculate_emas(input: f64, k: f64, current: f64, is_new: bool) -> f64 {
 /// </math>
 /// <br>
 /// Where `o` is the output, `n` is the current step, `n-1` is the previous step, `p` is the period of the exponential moving average and `i` is the input.
-/// 
+///
 /// # Example Usage
 /// ```
 /// use indicato_rs::signals::ExponentialMovingAverage;
 /// use indicato_rs::traits::{Apply, Evaluate, Current};
-/// 
+///
 /// // create a new Exponential Moving Average with a period of 3
 /// let mut ema = ExponentialMovingAverage::new(3).unwrap();
-/// 
+///
 /// // apply some values and check their output
 /// assert_eq!(ema.apply(2.0), 2.0);
 /// assert_eq!(ema.apply(5.0), 3.5);
 /// assert_eq!(ema.apply(1.0), 2.25);
 /// assert_eq!(ema.apply(6.25), 4.25);
-/// 
+///
 /// // evaluate some values, these won't affect the internal state of the EMA
 /// assert_eq!(ema.evaluate(5.0), 4.625);
 /// assert_eq!(ema.evaluate(4.0), 4.125);
-/// 
+///
 /// // fetch the current value of the EMA
 /// assert_eq!(ema.current(), 4.25);
 /// ````
-/// 
+///
 #[derive(Apply, Evaluate)]
 pub struct ExponentialMovingAverage {
     current: f64,

@@ -41,13 +41,13 @@ fn calculate_wilders(input: f64, previous: f64, period: usize) -> f64 {
 ///                 <mi>p</mi>
 ///             </mrow>
 ///         </mfrac>
-///     </mrow> 
+///     </mrow>
 /// </semantics>
 /// </math>
 /// <br>
-/// 
+///
 /// Where `o` is the output, `n` is the current step, `n-1` is the previous step, `p` is the period of the Wilders Smoothing and `i` is the input.
-/// 
+///
 /// The first entries up until the period will produce `None` as the output, as the aggregation is being seeded.
 /// Once the aggregation is seeded the first output will be the average of the first `period` entries.
 /// The first value is calculated using the formula:
@@ -80,25 +80,25 @@ fn calculate_wilders(input: f64, previous: f64, period: usize) -> f64 {
 /// </semantics>
 /// </math>
 /// <br>
-/// 
+///
 /// # Example Usage
 /// ```
 /// use indicato_rs::signals::WildersSmoothing;
 /// use indicato_rs::traits::{Apply, Evaluate, Current};
-/// 
+///
 /// // create a new Wilders Smoothing with a period of 3
 /// let mut ws = WildersSmoothing::new(3).unwrap();
-/// 
+///
 /// // apply some values and check their output
 /// assert_eq!(ws.apply(2.0), None);
 /// assert_eq!(ws.apply(4.0), None);
 /// assert_eq!(ws.apply(3.0), Some(3.0));
 /// assert_eq!(ws.apply(9.0), Some(5.0));
-/// 
+///
 /// // evaluate some values, these won't affect the internal state of the Wilders Smoothing
 /// assert_eq!(ws.evaluate(8.0), Some(6.0));
 /// assert_eq!(ws.evaluate(2.0), Some(4.0));
-/// 
+///
 /// // check the current value of the Wilders Smoothing
 /// assert_eq!(ws.current(), Some(5.0));
 /// ```

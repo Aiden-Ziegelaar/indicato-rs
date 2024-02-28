@@ -2,7 +2,7 @@ use local_macros::{Apply, Evaluate};
 
 use crate::{
     error::{FinError, FinErrorType},
-    traits::{Apply, Evaluate, Current, Executable, ExecutionContext, IoState},
+    traits::{Apply, Current, Evaluate, Executable, ExecutionContext, IoState},
 };
 
 fn up_down(input: f64, previous: f64) -> (f64, f64) {
@@ -14,11 +14,11 @@ fn up_down(input: f64, previous: f64) -> (f64, f64) {
 
 /// # Relative Strength Index
 /// Container for Relative Strength Index (RSI) aggregation
-/// The relative strength index (RSI) is a momentum indicator used in technical analysis that measures the magnitude 
+/// The relative strength index (RSI) is a momentum indicator used in technical analysis that measures the magnitude
 /// of recent price changes to evaluate overbought or oversold conditions in the price of a stock or other asset.
-/// 
+///
 /// The RSI is displayed as an oscillator (a line graph that moves between two extremes) and can have a reading from 0 to 100.
-/// 
+///
 /// The RSI is calculated on trends, in order to smooth these trends the RSI is calculated using the Wilders Smoothing method.
 /// Two Wilders Smoothing aggregations are used to calculate the average of the upward price change and the average of the downward price change.
 /// <br>
@@ -112,10 +112,10 @@ fn up_down(input: f64, previous: f64) -> (f64, f64) {
 ///     </mrow>
 /// </semantics>
 /// </math>
-/// 
-/// Where `U` is the average of the upward price change, `D` is the average of the downward price change, 
+///
+/// Where `U` is the average of the upward price change, `D` is the average of the downward price change,
 /// `WS` is the Wilders Smoothing aggregation, `Δi` is the difference between the current and previous step input and `n` is the step.
-/// 
+///
 /// Given:
 /// <br>
 /// <br>
@@ -145,8 +145,8 @@ fn up_down(input: f64, previous: f64) -> (f64, f64) {
 /// </semantics>
 /// </math>
 /// <br>
-/// 
-/// 
+///
+///
 /// The RSI is calculated using the following formula:
 /// <br>
 /// <br>
@@ -182,32 +182,32 @@ fn up_down(input: f64, previous: f64) -> (f64, f64) {
 /// </math>
 /// <br>
 /// Where `o` is the RSI output, `n` is the current step, `U` is the average of the upward price change, `D` is the average of the downward price change.
-/// 
+///
 /// # Example Usage
 /// ```
 /// use indicato_rs::signals::RelativeStrengthIndex;
 /// use indicato_rs::traits::{Apply, Evaluate, Current};
-/// 
+///
 /// let mut rsi = RelativeStrengthIndex::new(3, 0).unwrap();
-/// 
+///
 /// // apply some values and check their output
 /// assert_eq!(rsi.apply(0.0), None);
 /// assert_eq!(rsi.apply(1.0), None);
 /// assert_eq!(rsi.apply(2.0), None);
 /// assert_eq!(rsi.apply(3.0), Some(100.0));
 /// assert_eq!(rsi.apply(4.0), Some(100.0));
-/// 
+///
 /// // evaluate the RSI
 /// assert_eq!(rsi.evaluate(5.0), Some(100.0));
 /// assert_eq!(rsi.evaluate(5.0), Some(100.0));
-/// 
+///
 /// // check the current RSI
 /// assert_eq!(rsi.current(), Some(100.0));
 /// ```
 
 #[derive(Apply, Evaluate)]
 pub struct RelativeStrengthIndex {
-    /// Even though the RSI is available from the first value after the period parameter, additional values 
+    /// Even though the RSI is available from the first value after the period parameter, additional values
     /// can be used to seed the RSI. This is added to the period to prevent values from being produced until
     /// `period` + `seed_period` values have been applied.
     seed_period: usize,
@@ -230,11 +230,11 @@ impl IoState for RelativeStrengthIndex {
 
 impl RelativeStrengthIndex {
     /// Creates a new RelativeStrengthIndex aggregation.
-    /// 
+    ///
     /// # Arguments
     /// * `period` - The period of the RSI, used for the Wilders Smoothing aggregations.
     /// * `seed_period` - The number of values that must be applied beyond the period to the RSI before it produces values.
-    /// 
+    ///
     pub fn new(period: usize, seed_period: usize) -> Result<Self, FinError> {
         match period {
             0 => Err(FinError::new(
@@ -303,7 +303,6 @@ impl Executable for RelativeStrengthIndex {
         }
     }
 }
-
 
 impl Current for RelativeStrengthIndex {
     fn current(&self) -> Self::Output {
