@@ -49,7 +49,7 @@ fn calculate_sma(input: f64, period: usize, values: &mut VecDeque<f64>) -> f64 {
 ///     </mfrac>
 ///     </mrow></mtd>
 ///     <mtd>if</mtd>
-///     <mtd><mrow>If <mi>n</mi><mo><</mo><mi>p</mi></mrow></mtd>
+///     <mtd><mrow><mi>n</mi><mo><</mo><mi>p</mi></mrow></mtd>
 ///     </mtr>
 ///     <mtr>
 ///     <mtd><mrow>
@@ -69,7 +69,7 @@ fn calculate_sma(input: f64, period: usize, values: &mut VecDeque<f64>) -> f64 {
 ///         </mfrac>
 ///     </mrow></mtd>
 ///     <mtd>if</mtd>
-///     <mtd><mrow>If <mi>n</mi><mo>≥</mo><mi>p</mi></mrow></mtd>
+///     <mtd><mrow><mi>n</mi><mo>≥</mo><mi>p</mi></mrow></mtd>
 ///     </mtr>
 /// </mtable>
 /// </mrow>
