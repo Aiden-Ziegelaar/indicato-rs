@@ -34,4 +34,5 @@ partially inspired by it. I mainly started this because I wanted lower level pri
 to work with, I also wanted an easy way to peek at the result of a prospective input
 without cloning the whole struct by using an `evaluate` and `apply` mode. 
 
-Where possible I have used [Investopedia](https://www.investopedia.comInvestopedia)'s definition of formulas.
+Where possible I have used [Investopedia](https://www.investopedia.comInvestopedia)'s 
+definition of formulas.
