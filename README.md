@@ -32,7 +32,6 @@ additional EMA primitive and it is the responsibility of the consumer to make co
 Theres a great crate called [ta](https://docs.rs/ta/latest/ta/), this crate was 
 partially inspired by it. I mainly started this because I wanted lower level primitives
 to work with, I also wanted an easy way to peek at the result of a prospective input
-without cloning the whole struct where possible by using an `evaluate` and `apply`
-mode. 
+without cloning the whole struct by using an `evaluate` and `apply` mode. 
 
 Where possible I have used [Investopedia](https://www.investopedia.comInvestopedia)'s definition of formulas.
