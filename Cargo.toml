@@ -2,7 +2,7 @@
 name = "indicato-rs"
 version = "0.0.0"
 authors = ["Aiden Ziegelaar"]
-description = "Library for mathmatical interpretation and signals"
+description = "Library for common statistical market signals"
 documentation = "https://aiden.ziegelaar.io"
 edition = "2021"
 

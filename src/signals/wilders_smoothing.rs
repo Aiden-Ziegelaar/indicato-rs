@@ -29,11 +29,11 @@ fn calculate_wilders(input: f64, previous: f64, period: usize) -> f64 {
 ///                     <mn>n-1</mn>
 ///                 </msub><mo>⋅</mo>
 ///                 <mrow><mo stretchy="true" form="prefix">(</mo>
-///                     <mi>p</mi>]<mo>−</mo><mn>1</mn>
+///                     <mi>p</mi><mo>-</mo><mn>1</mn>
 ///                 <mo stretchy="true" form="postfix">)</mo></mrow>
 ///                 <mo>+</mo>
 ///                 <msub>
-///     `               <mi>i</mi>
+///                     <mi>i</mi>
 ///                     <mi>n</mi>
 ///                 </msub>
 ///             </mrow>

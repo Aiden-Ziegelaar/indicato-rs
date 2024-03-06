@@ -34,7 +34,7 @@ use super::ExponentialMovingAverage;
 ///                 <mn>n</mn>
 ///             </msub>
 ///             <mo>)</mo>
-///             <mo>−</mo>
+///             <mo>-</mo>
 ///             <msub>
 ///                 <mi>EMA</mi>
 ///                 <mn>L</mn>
