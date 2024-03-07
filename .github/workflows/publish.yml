@@ -18,7 +18,11 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
-    - name: Publish
-      run: cargo publish --verbose
+    - name: Publish Proc
+      run: cargo publish --verbose -p indicato_rs_proc
+      env:
+        CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_ACCESS_TOKEN }}
+    - name: Publish Main
+      run: cargo publish --verbose -p indicato_rs
       env:
         CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_ACCESS_TOKEN }}

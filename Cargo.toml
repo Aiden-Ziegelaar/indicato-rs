@@ -3,6 +3,8 @@ members = [
     "indicato_rs",
     "indicato_rs_proc",
 ]
+resolver = "2"
 
 [workspace.dependencies]
 indicato_rs_proc = { path = "./indicato_rs_proc", version = "0.1.0" }
+
