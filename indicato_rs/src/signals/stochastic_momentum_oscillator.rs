@@ -1,4 +1,4 @@
-use local_macros::{Apply, Evaluate};
+use indicato_rs_proc::{Apply, Evaluate};
 
 use crate::{
     error::FinError,

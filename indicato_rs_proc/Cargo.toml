@@ -1,5 +1,5 @@
 [package]
-name = "local_macros"
+name = "indicato_rs_proc"
 version = "0.1.0"
 edition = "2021"
 

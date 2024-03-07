@@ -1,25 +1,8 @@
-[package]
-name = "indicato-rs"
-version = "0.0.0"
-authors = ["Aiden Ziegelaar"]
-description = "Library for common statistical market signals"
-documentation = "https://aiden.ziegelaar.io"
-edition = "2021"
+[workspace]
+members = [
+    "indicato_rs",
+    "indicato_rs_proc",
+]
 
-[dependencies]
-# Workspace Dependencies
-
-# Local Dependencies
-local_macros = { path = "./local_macros" }
-
-# External Dependencies
-
-[dev-dependencies]
-criterion = { version = "0.4", features = ["html_reports"] }
-approx = { version = "0.5.1" }
-
-[[bench]]
-name = "wilders_smoothing_bench"
-harness = false
-
-[lib]
+[workspace.dependencies]
+indicato_rs_proc = { path = "./indicato_rs_proc", version = "0.1.0" }

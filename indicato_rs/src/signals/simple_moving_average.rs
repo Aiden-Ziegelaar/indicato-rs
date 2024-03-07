@@ -4,7 +4,7 @@ use crate::{
     error::{FinError, FinErrorType},
     traits::{Apply, Current, Evaluate},
 };
-use local_macros::{Apply, Evaluate};
+use indicato_rs_proc::{Apply, Evaluate};
 
 use crate::traits::{Executable, ExecutionContext, IoState};
 
