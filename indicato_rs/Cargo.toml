@@ -1,6 +1,6 @@
 [package]
 name = "indicato_rs"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Aiden Ziegelaar"]
 description = "Library for common statistical market signals"
 documentation = "https://docs.rs/indicato_rs"
@@ -10,7 +10,7 @@ repository = "https://github.com/Aiden-Ziegelaar/indicato-rs"
 
 [dependencies]
 # Workspace Dependencies
-indicato_rs_proc = { workspace = true, version = "0.0.0" }
+indicato_rs_proc = { workspace = true, version = "0.1.0" }
 
 # External Dependencies
 
