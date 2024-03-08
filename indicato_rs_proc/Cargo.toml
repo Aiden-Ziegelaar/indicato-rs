@@ -2,6 +2,8 @@
 name = "indicato_rs_proc"
 version = "0.1.0"
 edition = "2021"
+description = "Proc macro for generating indicato_rs struct derived functions"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
