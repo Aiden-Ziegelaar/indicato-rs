@@ -1,11 +1,12 @@
 [package]
 name = "indicato_rs"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["Aiden Ziegelaar"]
 description = "Library for common statistical market signals"
-documentation = "https://aiden.ziegelaar.io"
+documentation = "https://docs.rs/indicato_rs"
 edition = "2021"
 license = "MIT"
+repository = "https://github.com/Aiden-Ziegelaar/indicato-rs"
 
 [dependencies]
 # Workspace Dependencies
