@@ -1,6 +1,6 @@
 [package]
 name = "indicato_rs"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Aiden Ziegelaar"]
 description = "Library for common statistical market signals"
 documentation = "https://docs.rs/indicato_rs"
