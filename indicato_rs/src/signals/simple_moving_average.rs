@@ -1,20 +1,13 @@
 use std::collections::VecDeque;
 
 use crate::{
+    dequeue_math::DequeMathExtF64,
     fin_error::{FinError, FinErrorType},
     traits::{Apply, Current, Evaluate},
 };
 use indicato_rs_proc::{Apply, Evaluate};
 
 use crate::traits::{Executable, ExecutionContext, IoState};
-
-fn calculate_sma(input: f64, period: usize, values: &mut VecDeque<f64>) -> f64 {
-    values.push_back(input);
-    if values.len() > period {
-        values.pop_front();
-    }
-    values.iter().sum::<f64>() / values.len() as f64
-}
 
 /// # Simple Moving Average
 /// Container for Simple Moving Average (SMA) aggregation
@@ -154,10 +147,20 @@ impl Executable for SimpleMovingAverage {
         execution_context: &ExecutionContext,
     ) -> Self::Output {
         match execution_context {
-            ExecutionContext::Apply => calculate_sma(input, self.period, &mut self.values),
+            ExecutionContext::Apply => {
+                self.values.push_back(input);
+                if self.values.len() > self.period {
+                    self.values.pop_front();
+                }
+                self.values.mean()
+            },
             ExecutionContext::Evaluate => {
                 let mut values = self.values.clone();
-                calculate_sma(input, self.period, &mut values)
+                values.push_back(input);
+                if values.len() > self.period {
+                    values.pop_front();
+                }
+                values.mean()
             }
         }
     }

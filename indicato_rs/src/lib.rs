@@ -10,3 +10,6 @@ pub mod signals;
 
 /// The traits module contains the traits that are used to define the functionality signals.
 pub mod traits;
+
+/// The math module contains calculations that are once-off, as opposed to signals which are aggregations
+pub mod dequeue_math;

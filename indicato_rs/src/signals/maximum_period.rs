@@ -3,8 +3,7 @@ use std::collections::VecDeque;
 use indicato_rs_proc::{Apply, Evaluate};
 
 use crate::{
-    fin_error::{FinError, FinErrorType},
-    traits::{Apply, Current, Evaluate, Executable, ExecutionContext, IoState},
+    dequeue_math::DequeMathExtF64, fin_error::{FinError, FinErrorType}, traits::{Apply, Current, Evaluate, Executable, ExecutionContext, IoState}
 };
 
 /// # Maximum Period
@@ -121,7 +120,7 @@ impl Executable for MaximumPeriod {
                 if self.values.len() > self.period {
                     self.values.pop_front();
                 }
-                self.values.iter().fold(f64::MIN, |acc, &x| acc.max(x))
+                self.values.max()
             }
             ExecutionContext::Evaluate => self
                 .values
@@ -135,7 +134,7 @@ impl Executable for MaximumPeriod {
 
 impl Current for MaximumPeriod {
     fn current(&self) -> Self::Output {
-        self.values.iter().fold(f64::MIN, |acc, &x| acc.max(x))
+        self.values.max()
     }
 }
 
