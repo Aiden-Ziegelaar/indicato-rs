@@ -169,6 +169,16 @@ mod tests {
     }
 
     #[test]
+    fn test_current() {
+        let mut ema = ExponentialMovingAverage::new(3).unwrap();
+        assert_eq!(ema.apply(1.0), 1.0);
+        assert_eq!(ema.apply(2.0), 1.5);
+        assert_eq!(ema.apply(3.0), 2.25);
+        assert_eq!(ema.apply(4.0), 3.125);
+        assert_eq!(ema.current(), 3.125);
+    }
+
+    #[test]
     fn test_invalid_period() {
         let ema = ExponentialMovingAverage::new(0);
         assert!(ema.is_err());

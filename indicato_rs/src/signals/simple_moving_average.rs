@@ -197,4 +197,20 @@ mod tests {
         assert_eq!(sma.evaluate(5.0), 4.0);
         assert_eq!(sma.apply(5.0), 4.0);
     }
+
+    #[test]
+    fn test_current() {
+        let mut sma = SimpleMovingAverage::new(3).unwrap();
+        assert_eq!(sma.apply(1.0), 1.0);
+        assert_eq!(sma.apply(2.0), 1.5);
+        assert_eq!(sma.apply(3.0), 2.0);
+        assert_eq!(sma.apply(4.0), 3.0);
+        assert_eq!(sma.current(), 3.0);
+    }
+
+    #[test]
+    fn test_invalid_period() {
+        let sma = SimpleMovingAverage::new(0);
+        assert!(sma.is_err());
+    }
 }

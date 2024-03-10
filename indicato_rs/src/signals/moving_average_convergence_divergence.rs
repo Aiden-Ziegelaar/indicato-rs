@@ -124,3 +124,31 @@ impl Executable for MovingAverageConvergenceDivergence {
         short_ema - long_ema
     }
 }
+
+#[cfg(test)]
+mod test {
+    use approx::assert_abs_diff_eq;
+
+    use super::*;
+
+    #[test]
+    fn test_macd() {
+        let mut macd = MovingAverageConvergenceDivergence::new(2, 4).unwrap();
+
+        assert_eq!(macd.apply(3.0), 0.0);
+        assert_abs_diff_eq!(macd.apply(4.8), 0.48, epsilon = 10e-7);
+        assert_abs_diff_eq!(macd.apply(6.3), 0.848, epsilon = 10e-7);
+        assert_abs_diff_eq!(macd.apply(5.0), 0.3488, epsilon = 10e-7);
+
+        assert_abs_diff_eq!(macd.evaluate(10.0), 1.48928, epsilon = 10e-7);
+
+        assert_abs_diff_eq!(macd.current(), 0.3488, epsilon = 10e-7);
+    }
+
+    #[test]
+    fn test_macd_new_invalid() {
+        assert!(MovingAverageConvergenceDivergence::new(0, 0).is_err());
+        assert!(MovingAverageConvergenceDivergence::new(0, 1).is_err());
+        assert!(MovingAverageConvergenceDivergence::new(1, 0).is_err());
+    }
+}

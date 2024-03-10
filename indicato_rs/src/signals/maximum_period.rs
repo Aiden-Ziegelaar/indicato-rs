@@ -166,4 +166,22 @@ mod tests {
         assert_eq!(max.apply(0.0), 2.0);
         assert_eq!(max.evaluate(0.5), 1.0);
     }
+
+    #[test]
+    fn test_maximum_period_current() {
+        let mut max = MaximumPeriod::new(3).unwrap();
+        assert_eq!(max.apply(1.0), 1.0);
+        assert_eq!(max.apply(2.0), 2.0);
+        assert_eq!(max.apply(3.0), 3.0);
+        assert_eq!(max.apply(2.0), 3.0);
+        assert_eq!(max.apply(1.0), 3.0);
+        assert_eq!(max.apply(0.0), 2.0);
+        assert_eq!(max.current(), 2.0);
+    }
+
+    #[test]
+    fn test_invalid_period() {
+        let max = MaximumPeriod::new(0);
+        assert!(max.is_err());
+    }
 }

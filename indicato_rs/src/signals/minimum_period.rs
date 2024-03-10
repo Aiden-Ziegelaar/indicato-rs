@@ -166,4 +166,22 @@ mod tests {
         assert_eq!(min.apply(0.5), 0.5);
         assert_eq!(min.evaluate(0.0), 0.0);
     }
+
+    #[test]
+    fn test_minimum_period_current() {
+        let mut min = MinimumPeriod::new(3).unwrap();
+        assert_eq!(min.apply(1.0), 1.0);
+        assert_eq!(min.apply(2.0), 1.0);
+        assert_eq!(min.apply(3.0), 1.0);
+        assert_eq!(min.apply(2.0), 2.0);
+        assert_eq!(min.apply(1.0), 1.0);
+        assert_eq!(min.apply(10.0), 1.0);
+        assert_eq!(min.current(), 1.0);
+    }
+
+    #[test]
+    fn test_invalid_period() {
+        let min = MinimumPeriod::new(0);
+        assert!(min.is_err());
+    }
 }

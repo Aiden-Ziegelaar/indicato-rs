@@ -349,6 +349,40 @@ mod tests {
     }
 
     #[test]
+    fn test_evaluate_pre_seed() {
+        let mut rsi = RelativeStrengthIndex::new(3, 0).unwrap();
+        assert_eq!(rsi.apply(0.0), None);
+        assert_eq!(rsi.apply(1.0), None);
+        assert_eq!(rsi.evaluate(2.0), None);
+        assert_eq!(rsi.apply(2.0), None);
+        assert_eq!(rsi.evaluate(5.0), Some(100.0));
+    }
+
+    #[test]
+    fn test_current() {
+        let mut rsi = RelativeStrengthIndex::new(3, 0).unwrap();
+        assert_eq!(rsi.apply(0.0), None);
+        assert_eq!(rsi.apply(1.0), None);
+        assert_eq!(rsi.apply(2.0), None);
+        assert_eq!(rsi.apply(3.0), Some(100.0));
+        assert_eq!(rsi.apply(4.0), Some(100.0));
+        assert_eq!(rsi.apply(5.0), Some(100.0));
+        assert_eq!(rsi.current(), Some(100.0));
+    }
+
+    #[test]
+    fn test_current_pre_seed() {
+        let mut rsi = RelativeStrengthIndex::new(3, 0).unwrap();
+        assert_eq!(rsi.apply(0.0), None);
+        assert_eq!(rsi.apply(1.0), None);
+        assert_eq!(rsi.current(), None);
+        assert_eq!(rsi.apply(2.0), None);
+        assert_eq!(rsi.current(), None);
+        assert_eq!(rsi.apply(3.0), Some(100.0));
+        assert_eq!(rsi.current(), Some(100.0));
+    }
+
+    #[test]
     fn test_invalid_period() {
         let rsi = RelativeStrengthIndex::new(0, 3);
         assert!(rsi.is_err());
@@ -376,6 +410,6 @@ mod tests {
         assert_eq!(rsi.apply(10.11768126451183100), Some(43.291203171201374));
         assert_eq!(rsi.apply(10.11768126451183100), Some(43.291203171201374));
         assert_eq!(rsi.apply(10.11768126451183100), Some(43.291203171201374));
-        assert_eq!(rsi.apply(10.93831484940749100), Some(52.644368580828655));
+        assert_eq!(rsi.evaluate(10.93831484940749100), Some(52.644368580828655));
     }
 }

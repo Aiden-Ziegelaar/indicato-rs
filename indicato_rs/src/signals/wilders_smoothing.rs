@@ -106,7 +106,8 @@ fn calculate_wilders(input: f64, previous: f64, period: usize) -> f64 {
 pub struct WildersSmoothing {
     /// The period of the Wilders Smoothing aggregation
     period: usize,
-    current: f64,
+    current: Option<f64>,
+    cumulative: f64,
     previous: f64,
     seed_count: usize,
 }
@@ -147,7 +148,8 @@ impl WildersSmoothing {
             _ => Ok(Self {
                 period,
                 previous: 0.0,
-                current: 0.0,
+                current: None,
+                cumulative: 0.0,
                 seed_count: 1,
             }),
         }
@@ -163,14 +165,17 @@ impl Executable for WildersSmoothing {
         match execution_context {
             ExecutionContext::Apply => {
                 if self.seed_count < self.period {
-                    self.current += input;
-                    self.previous = self.current / self.seed_count as f64;
+                    self.cumulative += input;
+                    self.previous = self.cumulative / self.seed_count as f64;
                     self.seed_count += 1;
                     None
                 } else {
-                    self.current = calculate_wilders(input, self.previous, self.period);
-                    self.previous = self.current;
-                    Some(self.current)
+                    self.current = Some(calculate_wilders(input, self.previous, self.period));
+                    self.previous = match self.current {
+                        Some(value) => value,
+                        None => self.previous,
+                    };
+                    self.current
                 }
             }
             ExecutionContext::Evaluate => {
@@ -190,7 +195,7 @@ impl Current for WildersSmoothing {
         if self.seed_count < self.period {
             None
         } else {
-            Some(self.current)
+            self.current
         }
     }
 }
@@ -218,5 +223,17 @@ mod tests {
         assert_eq!(ws.apply(2.0), Some(2.0));
         assert_eq!(ws.evaluate(5.0), Some(3.0));
         assert_eq!(ws.apply(5.0), Some(3.0));
+    }
+
+    #[test]
+    fn test_current() {
+        let ws = WildersSmoothing::new(3).unwrap();
+        assert!(ws.current().is_none());
+    }
+
+    #[test]
+    fn test_invalid_period() {
+        let ws = WildersSmoothing::new(0);
+        assert!(ws.is_err());
     }
 }

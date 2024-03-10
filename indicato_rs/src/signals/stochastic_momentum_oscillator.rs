@@ -123,25 +123,25 @@ impl Executable for StochasticMomentumOscillator {
         input: Self::Input,
         execution_context: &ExecutionContext,
     ) -> Self::Output {
-        let (high, low, close) = input;
+        let (high_i, low_i, close_i) = input;
         match execution_context {
             ExecutionContext::Apply => {
-                let high = self.high.execute(high, execution_context);
-                let low = self.low.execute(low, execution_context);
+                let high = self.high.execute(high_i, execution_context);
+                let low = self.low.execute(low_i, execution_context);
                 if high == low {
                     self.current = 50.0
                 } else {
-                    self.current = 100.0 * (close - low) / (high - low)
+                    self.current = 100.0 * (close_i - low) / (high - low)
                 }
                 self.current
             }
             ExecutionContext::Evaluate => {
-                let high = self.high.execute(high, execution_context);
-                let low = self.low.execute(low, execution_context);
+                let high = self.high.execute(high_i, execution_context);
+                let low = self.low.execute(low_i, execution_context);
                 if high == low {
                     50.0
                 } else {
-                    100.0 * (close - low) / (high - low)
+                    100.0 * (close_i - low) / (high - low)
                 }
             }
         }
@@ -151,5 +151,43 @@ impl Executable for StochasticMomentumOscillator {
 impl Current for StochasticMomentumOscillator {
     fn current(&self) -> Self::Output {
         self.current
+    }
+}
+
+
+#[cfg(test)]
+mod tests {
+    use approx::assert_abs_diff_eq;
+
+    use super::*;
+
+    #[test]
+    fn test_stochastic_momentum_oscillator() {
+        let mut sma = StochasticMomentumOscillator::new(3).unwrap();
+        assert_eq!(sma.apply((3.0, 1.0, 2.0)), 50.0);
+        assert_eq!(sma.evaluate((3.0, 1.0, 2.0)), 50.0);
+        assert_eq!(sma.apply((3.0, 1.0, 2.0)), 50.0);
+        assert_eq!(sma.evaluate((3.0, 1.0, 2.5)),75.0);
+        assert_eq!(sma.apply((3.0, 1.0, 2.5)), 75.0);
+        assert_abs_diff_eq!(sma.evaluate((3.0, 1.0, 2.8)), 90.0, epsilon = 10e-7);
+        assert_eq!(sma.current(), 75.0);
+    }
+
+    #[test]
+    fn test_flatline() {
+        let mut sma = StochasticMomentumOscillator::new(3).unwrap();
+        assert_eq!(sma.apply((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(sma.evaluate((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(sma.apply((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(sma.evaluate((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(sma.apply((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(sma.evaluate((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(sma.current(), 50.0);
+    
+    }
+
+    #[test]
+    fn test_invalid_period() {
+        assert!(StochasticMomentumOscillator::new(0).is_err());
     }
 }
