@@ -163,26 +163,26 @@ mod tests {
 
     #[test]
     fn test_stochastic_momentum_oscillator() {
-        let mut sma = StochasticMomentumOscillator::new(3).unwrap();
-        assert_eq!(sma.apply((3.0, 1.0, 2.0)), 50.0);
-        assert_eq!(sma.evaluate((3.0, 1.0, 2.0)), 50.0);
-        assert_eq!(sma.apply((3.0, 1.0, 2.0)), 50.0);
-        assert_eq!(sma.evaluate((3.0, 1.0, 2.5)),75.0);
-        assert_eq!(sma.apply((3.0, 1.0, 2.5)), 75.0);
-        assert_abs_diff_eq!(sma.evaluate((3.0, 1.0, 2.8)), 90.0, epsilon = 10e-7);
-        assert_eq!(sma.current(), 75.0);
+        let mut smo = StochasticMomentumOscillator::new(3).unwrap();
+        assert_eq!(smo.apply((3.0, 1.0, 2.0)), 50.0);
+        assert_eq!(smo.evaluate((3.0, 1.0, 2.0)), 50.0);
+        assert_eq!(smo.apply((3.0, 1.0, 2.0)), 50.0);
+        assert_eq!(smo.evaluate((3.0, 1.0, 2.5)),75.0);
+        assert_eq!(smo.apply((3.0, 1.0, 2.5)), 75.0);
+        assert_abs_diff_eq!(smo.evaluate((3.0, 1.0, 2.8)), 90.0, epsilon = 10e-7);
+        assert_eq!(smo.current(), 75.0);
     }
 
     #[test]
     fn test_flatline() {
-        let mut sma = StochasticMomentumOscillator::new(3).unwrap();
-        assert_eq!(sma.apply((3.0, 3.0, 3.0)), 50.0);
-        assert_eq!(sma.evaluate((3.0, 3.0, 3.0)), 50.0);
-        assert_eq!(sma.apply((3.0, 3.0, 3.0)), 50.0);
-        assert_eq!(sma.evaluate((3.0, 3.0, 3.0)), 50.0);
-        assert_eq!(sma.apply((3.0, 3.0, 3.0)), 50.0);
-        assert_eq!(sma.evaluate((3.0, 3.0, 3.0)), 50.0);
-        assert_eq!(sma.current(), 50.0);
+        let mut smo = StochasticMomentumOscillator::new(3).unwrap();
+        assert_eq!(smo.apply((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(smo.evaluate((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(smo.apply((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(smo.evaluate((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(smo.apply((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(smo.evaluate((3.0, 3.0, 3.0)), 50.0);
+        assert_eq!(smo.current(), 50.0);
     
     }
 
