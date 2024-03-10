@@ -168,11 +168,7 @@ impl Executable for SimpleMovingAverage {
 
 impl Current for SimpleMovingAverage {
     fn current(&self) -> Self::Output {
-        if self.values.is_empty() {
-            0.0
-        } else {
-            self.values.iter().sum::<f64>() / self.values.len() as f64
-        } 
+        self.values.mean()
     }
 }
 
