@@ -1,7 +1,7 @@
 use indicato_rs_proc::{Apply, Evaluate};
 
 use crate::{
-    error::FinError,
+    fin_error::FinError,
     traits::{Apply, Current, Evaluate, Executable, ExecutionContext, IoState},
 };
 

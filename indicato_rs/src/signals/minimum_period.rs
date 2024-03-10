@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 use indicato_rs_proc::{Apply, Evaluate};
 
 use crate::{
-    error::{FinError, FinErrorType},
+    fin_error::{FinError, FinErrorType},
     traits::{Apply, Current, Evaluate, Executable, ExecutionContext, IoState},
 };
 

@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 
 use crate::{
-    error::{FinError, FinErrorType},
+    fin_error::{FinError, FinErrorType},
     traits::{Apply, Current, Evaluate},
 };
 use indicato_rs_proc::{Apply, Evaluate};

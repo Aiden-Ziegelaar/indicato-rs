@@ -3,7 +3,7 @@
 
 
 /// The error module contains the error types used in the crate.
-pub mod error;
+pub mod fin_error;
 
 /// The signals module contains the signal types that can be created.
 pub mod signals;
