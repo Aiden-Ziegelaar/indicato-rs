@@ -1,0 +1,2 @@
+ignore:
+  - indicators_rs/src/error.rs
