@@ -20,7 +20,7 @@ jobs:
       run: ls
     - name: Run tests
       run: |
-        curl https://github.com/mozilla/grcov/releases/latest/download/grcov-x86_64-unknown-linux-gnu.tar.bz2 -sSf | tar xvz -C $HOME/.local/bin
+        curl https://github.com/mozilla/grcov/releases/latest/download/grcov-x86_64-unknown-linux-gnu.tar.bz2 -sSf | tar xvf -C $HOME/.local/bin
         CARGO_INCREMENTAL=0 RUSTFLAGS='-Cinstrument-coverage' LLVM_PROFILE_FILE='cargo-test-%p-%m.profraw' cargo test
         mkdir -p ./target/debug/coverage/
         grcov . -s . --binary-path ./target/debug/ -t lcov --branch --ignore-not-existing -o /target/debug/coverage/
