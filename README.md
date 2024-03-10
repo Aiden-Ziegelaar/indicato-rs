@@ -1,9 +1,13 @@
+[crates-badge]: https://img.shields.io/crates/v/indicato_rs.svg
+[crates-url]: https://crates.io/crates/indicato_rs
+
 # DISCLAIMER
 This is a personal project I am doing for fun, it is not recommended that you
 use these in any project where reliable statistical analysis is required. 
 For limitations and license see LICENSE.md in the top level  of this repo.
 
 # Indicato-rs
+[![Crates.io][crates-badge]][crates-url]
 This is a library built to calculate common statistical signals used in 
 Technical Analysis (TA) of markets.
 
