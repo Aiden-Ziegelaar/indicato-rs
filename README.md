@@ -2,6 +2,8 @@
 [mit-url]: https://github.com/tokio-rs/tokio/blob/master/LICENSE
 [crates-badge]: https://img.shields.io/crates/v/indicato_rs.svg
 [crates-url]: https://crates.io/crates/indicato_rs
+[codecov-badge]: https://codecov.io/github/Aiden-Ziegelaar/indicato-rs/graph/badge.svg?token=F62M3Z8IA4
+[codecov-url]: https://codecov.io/github/Aiden-Ziegelaar/indicato-rs
 
 # DISCLAIMER
 This is a personal project I am doing for fun, it is not recommended that you
@@ -11,6 +13,7 @@ For limitations and license see LICENSE.md in the top level  of this repo.
 # Indicato-rs
 [![Crates.io][crates-badge]][crates-url]
 [![MIT licensed][mit-badge]][mit-url]
+[![codecov][codecov-badge]][codecov-url]
 
 This is a library built to calculate common statistical signals used in 
 Technical Analysis (TA) of markets.
