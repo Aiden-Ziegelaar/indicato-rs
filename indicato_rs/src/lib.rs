@@ -12,4 +12,4 @@ pub mod signals;
 pub mod traits;
 
 /// The math module contains calculations that are once-off, as opposed to signals which are aggregations
-pub mod dequeue_math;
+pub mod deque_math;

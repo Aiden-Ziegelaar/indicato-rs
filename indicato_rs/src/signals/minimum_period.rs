@@ -3,7 +3,7 @@ use std::collections::VecDeque;
 use indicato_rs_proc::{Apply, Evaluate};
 
 use crate::{
-    dequeue_math::DequeMathExtF64, fin_error::{FinError, FinErrorType}, traits::{Apply, Current, Evaluate, Executable, ExecutionContext, IoState}
+    deque_math::DequeMathExtF64, fin_error::{FinError, FinErrorType}, traits::{Apply, Current, Evaluate, Executable, ExecutionContext, IoState}
 };
 
 /// # Minimum Period

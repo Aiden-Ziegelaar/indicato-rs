@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 
 use crate::{
-    dequeue_math::DequeMathExtF64,
+    deque_math::DequeMathExtF64,
     fin_error::{FinError, FinErrorType},
     traits::{Apply, Current, Evaluate},
 };
