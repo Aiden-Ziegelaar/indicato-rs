@@ -170,11 +170,9 @@ impl Executable for WildersSmoothing {
                     self.seed_count += 1;
                     None
                 } else {
-                    self.current = Some(calculate_wilders(input, self.previous, self.period));
-                    self.previous = match self.current {
-                        Some(value) => value,
-                        None => self.previous,
-                    };
+                    let smoothed_result = calculate_wilders(input, self.previous, self.period);
+                    self.current = Some(smoothed_result);
+                    self.previous = smoothed_result;
                     self.current
                 }
             }
