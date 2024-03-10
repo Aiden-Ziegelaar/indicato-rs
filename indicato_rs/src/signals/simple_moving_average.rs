@@ -169,7 +169,7 @@ impl Current for SimpleMovingAverage {
             0.0
         } else {
             self.values.iter().sum::<f64>() / self.values.len() as f64
-        }
+        } 
     }
 }
 

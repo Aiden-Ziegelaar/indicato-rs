@@ -1,3 +1,5 @@
+[mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[mit-url]: https://github.com/tokio-rs/tokio/blob/master/LICENSE
 [crates-badge]: https://img.shields.io/crates/v/indicato_rs.svg
 [crates-url]: https://crates.io/crates/indicato_rs
 
@@ -8,6 +10,8 @@ For limitations and license see LICENSE.md in the top level  of this repo.
 
 # Indicato-rs
 [![Crates.io][crates-badge]][crates-url]
+[![MIT licensed][mit-badge]][mit-url]
+
 This is a library built to calculate common statistical signals used in 
 Technical Analysis (TA) of markets.
 
