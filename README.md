@@ -1,5 +1,5 @@
 [mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[mit-url]: https://github.com/tokio-rs/tokio/blob/master/LICENSE
+[mit-url]: https://github.com/Aiden-Ziegelaar/indicato-rs/blob/main/LICENSE.md
 [crates-badge]: https://img.shields.io/crates/v/indicato_rs.svg
 [crates-url]: https://crates.io/crates/indicato_rs
 [codecov-badge]: https://codecov.io/github/Aiden-Ziegelaar/indicato-rs/graph/badge.svg?token=F62M3Z8IA4
