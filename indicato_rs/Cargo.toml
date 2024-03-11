@@ -7,7 +7,7 @@ documentation = "https://docs.rs/indicato_rs"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/Aiden-Ziegelaar/indicato-rs"
-readme = "README.md"
+readme = "../README.md"
 
 [dependencies]
 # Workspace Dependencies
