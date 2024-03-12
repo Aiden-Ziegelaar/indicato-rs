@@ -89,6 +89,27 @@ pub struct MaximumPeriod {
 }
 
 impl MaximumPeriod {
+    /// Create a new MaximumPeriod signal with a given period
+    /// # Errors
+    /// Will return an error if the period is 0
+    /// # Arguments
+    /// * `period` - The period of the MaximumPeriod signal, must be greater than 0
+    /// # Example
+    /// ```
+    /// use indicato_rs::signals::MaximumPeriod;
+    /// use indicato_rs::traits::{Apply, Evaluate, Current};
+    /// 
+    /// let mut max = MaximumPeriod::new(3).unwrap();
+    /// max.apply(1.0);
+    /// max.apply(3.0);
+    /// max.apply(2.0);
+    /// assert_eq!(max.current(), 3.0);
+    /// ```
+    /// ```
+    /// use indicato_rs::signals::MaximumPeriod;
+    /// let max = MaximumPeriod::new(0);
+    /// assert!(max.is_err());
+    /// ```
     pub fn new(period: usize) -> Result<Self, FinError> {
         match period {
             0 => Err(FinError::new(

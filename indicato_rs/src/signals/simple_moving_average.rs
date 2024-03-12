@@ -112,10 +112,14 @@ impl SimpleMovingAverage {
     /// # Example
     /// ```
     /// use indicato_rs::signals::SimpleMovingAverage;
+    /// use indicato_rs::traits::{Apply, Evaluate, Current};
     ///
-    /// let sma = SimpleMovingAverage::new(3);
-    ///
-    /// assert!(sma.is_ok());
+    /// let mut sma = SimpleMovingAverage::new(3).unwrap();
+    /// 
+    /// sma.apply(2.0);
+    /// sma.apply(4.0);
+    /// sma.apply(3.0);
+    /// assert_eq!(sma.current(), 3.0);
     /// ```
     /// # Errors
     /// Will return an error if the period is 0

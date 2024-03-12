@@ -89,6 +89,27 @@ pub struct MinimumPeriod {
 }
 
 impl MinimumPeriod {
+    /// Create a new MinimumPeriod signal with a given period
+    /// # Errors
+    /// Will return an error if the period is 0
+    /// # Arguments
+    /// * `period` - The period of the MinimumPeriod signal, must be greater than 0
+    /// # Example
+    /// ```
+    /// use indicato_rs::signals::MinimumPeriod;
+    /// use indicato_rs::traits::{Apply, Evaluate, Current};
+    /// 
+    /// let mut min = MinimumPeriod::new(3).unwrap();
+    /// min.apply(1.0);
+    /// min.apply(3.0);
+    /// min.apply(2.0);
+    /// assert_eq!(min.current(), 1.0);
+    /// ```
+    /// ```
+    /// use indicato_rs::signals::MinimumPeriod;
+    /// let min = MinimumPeriod::new(0);
+    /// assert!(min.is_err());
+    /// ```
     pub fn new(period: usize) -> Result<Self, FinError> {
         match period {
             0 => Err(FinError::new(

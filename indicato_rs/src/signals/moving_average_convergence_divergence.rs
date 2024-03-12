@@ -97,6 +97,31 @@ impl MovingAverageConvergenceDivergence {
     ///
     /// _NB._ Both periods must be greater than 0, there is no requirement for the short period to be less than the long period.
     ///
+    /// # Example
+    /// ```
+    /// use indicato_rs::signals::MovingAverageConvergenceDivergence;
+    /// use indicato_rs::traits::{Apply, Evaluate, Current};
+    /// use indicato_rs::fin_error::FinErrorType;
+    /// 
+    /// use approx::assert_abs_diff_eq;
+    /// 
+    /// let mut macd = MovingAverageConvergenceDivergence::new(2, 4).unwrap();
+    /// 
+    /// macd.apply(3.0);
+    /// macd.apply(4.8);
+    /// macd.apply(6.3);
+    /// macd.apply(5.0);
+    /// 
+    /// assert_abs_diff_eq!(macd.current(), 0.3488, epsilon = 10e-7);
+    /// ```
+    /// 
+    /// ```
+    /// use indicato_rs::signals::MovingAverageConvergenceDivergence;
+    /// 
+    /// let macd = MovingAverageConvergenceDivergence::new(0, 0);
+    /// 
+    /// assert!(macd.is_err());
+    /// ```
     pub fn new(short_period: usize, long_period: usize) -> Result<Self, FinError> {
         match (short_period, long_period) {
             (0, _) | (_, 0) => Err(FinError::new(

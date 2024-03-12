@@ -125,12 +125,15 @@ impl WildersSmoothing {
     /// # Example
     /// ```
     /// use indicato_rs::signals::WildersSmoothing;
-    ///
-    /// let ws = WildersSmoothing::new(3);
-    ///
-    /// assert!(ws.is_ok());
+    /// use indicato_rs::traits::{Apply, Evaluate, Current};
+    /// 
+    /// let mut ws = WildersSmoothing::new(3).unwrap();
+    /// 
+    /// assert_eq!(ws.apply(2.0), None);
+    /// assert_eq!(ws.apply(4.0), None);
+    /// assert_eq!(ws.apply(3.0), Some(3.0));
+    /// assert_eq!(ws.apply(9.0), Some(5.0));
     /// ```
-    /// # Errors
     /// Will return an error if the period is 0
     /// ```
     /// use indicato_rs::signals::WildersSmoothing;

@@ -113,7 +113,9 @@ impl StochasticMomentumOscillator {
 }
 
 impl IoState for StochasticMomentumOscillator {
+    /// The input for the Stochastic Momentum Oscillator is a tuple of three f64 values, representing the high, low and close values.
     type Input = (f64, f64, f64);
+    /// The output for the Stochastic Momentum Oscillator is a single f64 value, representing the current value of the oscillator.
     type Output = f64;
 }
 
