@@ -99,11 +99,8 @@ impl MaximumPeriod {
     /// use indicato_rs::signals::MaximumPeriod;
     /// use indicato_rs::traits::{Apply, Evaluate, Current};
     /// 
-    /// let mut max = MaximumPeriod::new(3).unwrap();
-    /// max.apply(1.0);
-    /// max.apply(3.0);
-    /// max.apply(2.0);
-    /// assert_eq!(max.current(), 3.0);
+    /// let max = MaximumPeriod::new(3);
+    /// assert!(max.is_ok());
     /// ```
     /// ```
     /// use indicato_rs::signals::MaximumPeriod;

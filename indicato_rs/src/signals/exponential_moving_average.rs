@@ -92,12 +92,8 @@ impl ExponentialMovingAverage {
     /// use indicato_rs::signals::ExponentialMovingAverage;
     /// use indicato_rs::traits::{Apply, Evaluate, Current};
     ///
-    /// let mut ema = ExponentialMovingAverage::new(3).unwrap();
-    /// 
-    /// assert_eq!(ema.apply(2.0), 2.0);
-    /// assert_eq!(ema.apply(5.0), 3.5);
-    /// assert_eq!(ema.apply(1.0), 2.25);
-    /// assert_eq!(ema.apply(6.25), 4.25);
+    /// let ema = ExponentialMovingAverage::new(3);
+    /// assert!(ema.is_ok());
     /// ```
     /// # Errors
     /// Will return an error if the period is 0

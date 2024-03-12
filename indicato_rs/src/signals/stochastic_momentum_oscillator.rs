@@ -103,6 +103,23 @@ pub struct StochasticMomentumOscillator {
 }
 
 impl StochasticMomentumOscillator {
+    /// Creates a new Stochastic Momentum Oscillator with a given period.
+    /// # Example
+    /// ```
+    /// use indicato_rs::signals::StochasticMomentumOscillator;
+    /// 
+    /// // Create a new Stochastic Momentum Oscillator with a period of 3
+    /// let smo = StochasticMomentumOscillator::new(3);
+    /// assert!(smo.is_ok());
+    /// ```
+    /// # Errors
+    /// Will return an error if the period is 0
+    /// ```
+    /// use indicato_rs::signals::StochasticMomentumOscillator;
+    /// 
+    /// let smo = StochasticMomentumOscillator::new(0);
+    /// assert!(smo.is_err());
+    /// ```
     pub fn new(period: usize) -> Result<Self, FinError> {
         Ok(Self {
             high: MaximumPeriod::new(period)?,

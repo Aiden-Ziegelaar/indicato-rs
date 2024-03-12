@@ -235,6 +235,22 @@ impl RelativeStrengthIndex {
     /// * `period` - The period of the RSI, used for the Wilders Smoothing aggregations.
     /// * `seed_period` - The number of values that must be applied beyond the period to the RSI before it produces values.
     ///
+    /// # Example
+    /// ```
+    /// use indicato_rs::signals::RelativeStrengthIndex;
+    /// 
+    /// let rsi = RelativeStrengthIndex::new(3, 0);
+    /// assert!(rsi.is_ok());
+    /// ```
+    /// # Errors
+    /// Will return an error if the period is 0
+    /// ```
+    /// use indicato_rs::signals::RelativeStrengthIndex;
+    /// 
+    /// let rsi = RelativeStrengthIndex::new(0, 3);
+    /// 
+    /// assert!(rsi.is_err());
+    /// ```
     pub fn new(period: usize, seed_period: usize) -> Result<Self, FinError> {
         match period {
             0 => Err(FinError::new(

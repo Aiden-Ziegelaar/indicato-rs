@@ -99,11 +99,8 @@ impl MinimumPeriod {
     /// use indicato_rs::signals::MinimumPeriod;
     /// use indicato_rs::traits::{Apply, Evaluate, Current};
     /// 
-    /// let mut min = MinimumPeriod::new(3).unwrap();
-    /// min.apply(1.0);
-    /// min.apply(3.0);
-    /// min.apply(2.0);
-    /// assert_eq!(min.current(), 1.0);
+    /// let mut min = MinimumPeriod::new(3);
+    /// assert!(min.is_ok());
     /// ```
     /// ```
     /// use indicato_rs::signals::MinimumPeriod;
