@@ -21,3 +21,6 @@ pub use minimum_period::MinimumPeriod;
 
 mod stochastic_momentum_oscillator;
 pub use stochastic_momentum_oscillator::StochasticMomentumOscillator;
+
+mod bollinger_bands;
+pub use bollinger_bands::BollingerBands;
